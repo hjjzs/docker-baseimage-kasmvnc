@@ -16,13 +16,13 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-base:v1
 
     - name: Save Docker image to a tar file
-      run: docker save my-image-name:$(date +%s) -o my-image-name.tar
+      run: docker save my-base:v1 -o my-base.tar
 
     - name: Upload Docker image as artifact
       uses: actions/upload-artifact@v3
       with:
         name: docker-image
-        path: my-image-name.tar
+        path: my-base.tar
